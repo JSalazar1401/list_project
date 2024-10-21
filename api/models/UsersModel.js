@@ -17,7 +17,7 @@ const UserSchema = new Schema([
             required: true
         }
     }, {
-        rols: {
+        rol: {
             type: String,
             enum: ["administrator", "aarticipant", "judge"],
             lowercase: true,

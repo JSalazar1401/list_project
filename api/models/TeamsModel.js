@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const GroupsSchema = new Schema([
+const TeamsSchema = new Schema([
     {
         name: {
             type: String,
@@ -9,7 +9,7 @@ const GroupsSchema = new Schema([
     }, {
         members: []
     }, {
-        lider: {
+        leader: {
             type: Schema.Types.ObjectId,
             required: true
         }
@@ -23,4 +23,4 @@ const GroupsSchema = new Schema([
     }
 ])
 
-export const GroupsModel = model("groups", GroupsSchema)
+export const TeamsModel = model("teams", TeamsSchema)

@@ -7,7 +7,7 @@ const GradesSchema = new Schema([
             required: true
         }
     }, {
-        ronda: {
+        round: {
             type: Number,
             required: true
         }
@@ -17,7 +17,16 @@ const GradesSchema = new Schema([
             required: true
         }
     }, {
-        grades: []
+        grades: [{
+            id_metrica: {
+                type: Schema.Types.ObjectId,
+                required: true
+            },
+            calificacion: {
+                type: Number,
+                required: true
+            }
+        }]
     }
 ])
 
