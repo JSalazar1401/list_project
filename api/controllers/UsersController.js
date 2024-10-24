@@ -1,7 +1,7 @@
 //Ver calificaciones del equipo
 //Ver la informacion del equipo al que pertenece
 //Lideres inscriben a evento a su equipo
-//euipos -> Ver información del evento (jueces, estatus, cuantos participantes, cuantos equipos, ronda del evento)
+//equipos -> Ver información del evento (jueces, estatus, cuantos participantes, cuantos equipos, ronda del evento)
 
 import { UserModel } from "../models/UsersModel.js";
 import bcrypt from "bcrypt";
