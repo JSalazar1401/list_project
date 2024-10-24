@@ -18,14 +18,18 @@ const GradesSchema = new Schema([
         }
     }, {
         grades: [{
-            id_metrica: {
+            id_metric: {
                 type: Schema.Types.ObjectId,
                 required: true
             },
-            calificacion: {
+            grade: {
                 type: Number,
                 required: true
-            }
+            },
+            id_judge: {
+                type: Schema.Types.ObjectId,
+                required: true
+            },
         }]
     }
 ])

@@ -6,7 +6,13 @@ const UserSchema = new Schema([
             type: String,
             required: true
         }
-    }, {
+    }, 
+    {
+        password: {
+            type: String,
+            required: true
+        }
+    },{
         email: {
             type: String,
             required: true
@@ -19,7 +25,7 @@ const UserSchema = new Schema([
     }, {
         rol: {
             type: String,
-            enum: ["administrator", "aarticipant", "judge"],
+            enum: ["administrator", "participant", "judge"],
             lowercase: true,
             required: true
         }
