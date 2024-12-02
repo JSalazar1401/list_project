@@ -44,7 +44,7 @@ export default {
             }
     
             //Creacion de token
-            const token = await jwt.sign(user,process.env.PRIVATE_KEY);
+            const token = await jwt.sign(JSON.stringify(user),process.env.PRIVATE_KEY);
     
             return res.status(200).json({token});
         } catch (error) {
@@ -59,7 +59,7 @@ export default {
                 return res.status(400).json({msg: "Usuario no encontrado!"})
             }
             user.name = req.body.name ? req.body.name : user.name; 
-            user.password = req.body.password ? req.body.password : user.password;
+            user.password = req.body.password ? await bcrypt.hash(req.body.password,10) : user.password;
             user.CURP = req.body.CURP ? req.body.CURP : user.CURP; 
             user.email = req.body.email ? req.body.email : user.email;
     

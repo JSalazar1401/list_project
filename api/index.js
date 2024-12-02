@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import userController from "./controllers/UsersController.js"
+import EventsController from "./controllers/EventsController.js";
 
 const app = express();
 
@@ -21,5 +22,9 @@ app.get("/",(req,res)=>{
 app.post("/user/register",userController.register)
 app.post("/user/login",userController.login)
 app.put("/user/update-profile/:id",userController.updateProfile)
+
+app.post("/event/create",EventsController.createEvent)
+
+app.post("/event/:idEvent/:idTeam")
 
 app.listen(4000,()=>console.log("Server is running"))
