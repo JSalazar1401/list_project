@@ -3,17 +3,7 @@ import React, { useState } from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 import Swal from 'sweetalert2';
-
-interface IMetric {
-    description: string;
-    max_points: number;
-}
-
-interface IEvent {
-    title: string;
-    maxRound: number;
-    metrics: IMetric[];
-}
+import { IEvent } from '../Types';
 
 export const CreateEvent = () => {
     const emptyMetric = {
