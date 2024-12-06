@@ -1,8 +1,8 @@
 //Crear equipo
 //inscribirse al evento
 
-import { EventModel } from "../models/EventsModel";
-import { TeamsModel } from "../models/TeamsModel";
+import { EventModel } from "../models/EventsModel.js";
+import { TeamsModel } from "../models/TeamsModel.js";
 
 export default {
     createTeam: async (req, res) => {
@@ -41,6 +41,15 @@ export default {
         } catch (error) {
             console.log(error);
             return res.status(500).json({ msg: "Ocurrio un error al registrar el equipo" })
+        }
+    },
+    getTeams: async (req, res) => {
+        try {
+            const teams = await TeamsModel.find();
+            return res.status(200).json(teams)
+        } catch (error) {
+            console.log(error)
+            return res.status(500).json({ msg: "Ocurrior un error al obtener los equipos " });
         }
     }
 }

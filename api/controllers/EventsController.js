@@ -182,5 +182,14 @@ export default {
             return res.status(500).json({ msg: "Error al cambiar de ronda. :c" });
         }
 
+    },
+    getEvents: async (req, res) => {
+        try {
+            const events = await EventModel.find();
+            return res.status(200).json(events)
+        } catch (error) {
+            console.log(error)
+            return res.status(500).json({ msg: "Ocurrior un error al obtener los eventos " });
+        }
     }
 }

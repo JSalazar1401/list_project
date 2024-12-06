@@ -1,8 +1,3 @@
-
-//Listado de usuarios -> Jueces, participantes, administradores
-//Lista de equipos
-//Eventos
-
 import axios from "axios";
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2";
@@ -20,10 +15,6 @@ export const ShowList = ({ entity }: props) => {
     getData()
   }, []);
 
-  function getKeys<T>() {
-    return Object.keys({}) as (keyof T)[]
-  }
-
   const getData = async () => {
     try {
       const url = `http://localhost:4000/${entity}/list`
@@ -35,13 +26,17 @@ export const ShowList = ({ entity }: props) => {
   }
 
   const getColumns = () => {
+    const userColumns = ["Nombre", "Correo", "CURP", "Rol"];
+    const eventColumns = ["Nombre del evento", "Cantidad de rondas"];
+    const teamColumns = ["Nombre del equipo", "Nombre del lider"];
+
     let columns = [];
     if (entity == "event") {
-      columns = getKeys<IEvent>();
+      columns = eventColumns;
     } else if (entity == "team") {
-      columns = getKeys<ITeams>();
+      columns = teamColumns;
     } else {
-      columns = getKeys<IUser>();
+      columns = userColumns;
     };
     const HTMLColums = columns.map((c) => (
       <th>{c}</th>
@@ -49,22 +44,56 @@ export const ShowList = ({ entity }: props) => {
     return HTMLColums;
   }
 
+  const getName = () => {
+    let name = ""
+    if (entity == "event") {
+      name = "eventos";
+    } else if (entity == "team") {
+      name = "equipos";
+    } else {
+      name = "usuarios";
+    };
+    return name;
+  }
+
 
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Listado de {entity}</Card.Title>
+        <Card.Title>Listado de {getName()}</Card.Title>
         <Table>
           <thead>
             {getColumns()}
           </thead>
           <tbody>
             {
-              data.map((datum) => (
-                <tr>
-                  <td>{datum}</td>
-                </tr>
-              ))
+              entity == "event" && (
+                data.map((event: IEvent) => (
+                  <tr>
+                    <td>{event.name}</td>
+                    <td>{event.maxRound}</td>
+                  </tr>
+                ))
+              ) ||
+              entity == "team" && (
+                data.map((team: ITeams) => (
+                  <tr>
+                    <td>{team.name}</td>
+                    <td>{team.leader}</td>
+                  </tr>
+                ))
+              ) ||
+              entity == "user" && (
+                data.map((user: IUser) => (
+                  <tr>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.CURP}</td>
+                    <td>{user.rol}</td>
+                  </tr>
+                ))
+              )
+
             }
           </tbody>
         </Table>

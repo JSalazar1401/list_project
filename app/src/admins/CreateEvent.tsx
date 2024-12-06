@@ -11,7 +11,7 @@ export const CreateEvent = () => {
         max_points: 0
     }
     const [event, setEvent] = useState<IEvent>({
-        title: "",
+        name: "",
         maxRound: 0,
         metrics: [emptyMetric]
     })

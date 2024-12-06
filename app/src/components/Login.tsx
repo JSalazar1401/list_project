@@ -1,26 +1,27 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react"
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export const Login = () => {
     const [data, setData] = useState({});
-
-    const onChange = (e:any) => {
+    const navigate = useNavigate()
+    const onChange = (e: any) => {
         e.preventDefault()
-        const tempoData:any = data;
+        const tempoData: any = data;
         tempoData[e.target.name] = e.target.value;
         setData(tempoData);
     }
 
-    const onSubmit = async ()=>{
+    const onSubmit = async () => {
         try {
             Swal.fire("Guardando datos");
             Swal.showLoading();
             await axios.post("http://localhost:4000/user/login", data);
-            Swal.fire("Datos validados con exito", "", "success");
-        } catch (error:any) {
-            Swal.fire("Algo salio mal",error.response.data.msg ,"error");
+            Swal.fire("Datos validados con exito", "", "success").then(() => navigate("/home"))
+        } catch (error: any) {
+            Swal.fire("Algo salio mal", error.response.data.msg, "error");
         }
     }
     return (
@@ -45,7 +46,7 @@ export const Login = () => {
                     </Row>
                     <Row className="text-center">
                         <Col>
-                            <Button className="m-3" onClick={()=>onSubmit()}>Ingresar</Button>
+                            <Button className="m-3" onClick={() => onSubmit()}>Ingresar</Button>
                         </Col>
                     </Row>
                     <Row>

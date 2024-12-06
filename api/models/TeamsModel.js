@@ -10,7 +10,7 @@ const TeamsSchema = new Schema([
         id_members: []
     }, {
         leader: {
-            type: Schema.Types.ObjectId,
+            type: String,
             required: true
         }
     }, {

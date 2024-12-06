@@ -34,7 +34,7 @@ export interface IMetric {
 }
 
 export interface IEvent {
-    title: string;
+    name: string;
     maxRound: number;
     metrics: IMetric[];
 }

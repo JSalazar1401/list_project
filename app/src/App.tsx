@@ -6,11 +6,31 @@ import {
 } from "react-router-dom";
 import { RegisterParticipant } from './participants/RegisterParticipant';
 import { CreateEvent } from './admins/CreateEvent';
+import { Dashboard } from './admins/Dashboard';
+import { ListUsers } from './admins/ListUsers';
+import { ListEvents } from './admins/ListEvents';
+import { ListTeams } from './admins/ListTeams';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
+  },
+  {
+    path: "/home",
+    element: <Dashboard />,
+  },
+  {
+    path: "/user/list",
+    element: <ListUsers />,
+  },
+  {
+    path: "/event/list",
+    element: <ListEvents />,
+  },
+  {
+    path: "/team/list",
+    element: <ListTeams />,
   },
   {
     path: "/create-event",
